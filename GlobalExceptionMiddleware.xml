@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GlobalExceptionMiddleware</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "T:Tore.Service.GlobalExceptionMiddleware" -->
+        <member name="F:Tore.Service.GlobalExceptionMiddleware.exceptionResponseBuilder">
+            ———————————————————————————————————————————————————————————————————————————
+                      VAR:  exceptionResponseBuilder.                               <summary>
+                      USE:  Method delegate for building an exception response.     <br/>
+                            Method delegate type must be ExceptionResponseBuilder.  <br/>
+                            Response must be written into response object passed.   </summary>
+                    ————————————————————————————————————————————————————————————————————————————
+        </member>
+        <member name="M:Tore.Service.GlobalExceptionMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            ——————————————————————————————————————————————————————————————————————————
+                      CTOR: GlobalExceptionMiddleware                               <summary>
+                      TASK: Constructs a GlobalExceptionMiddleware object.          <br/>
+                            This is called per request by the .Net Web API.         <br/>
+                      ARGS: nextMiddleWare : RequestDelegate :
+                            Next middleware delegate to invoke.                     </summary>
+                    ————————————————————————————————————————————————————————————————————————————
+        </member>
+        <member name="M:Tore.Service.GlobalExceptionMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            ——————————————————————————————————————————————————————————————————————————
+                      FUNC: InvokeAsync                                                 <summary>
+                      TASK: Middleware chain call, do not use, .NET Web API calls this. <br/>
+                      ARGS: context : HttpContext: Current http context.                </summary>
+                    ————————————————————————————————————————————————————————————————————————————
+        </member>
+    </members>
+</doc>
