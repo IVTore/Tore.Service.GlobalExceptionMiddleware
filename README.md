@@ -8,7 +8,7 @@ Dependancies: None.
 
 ## GlobaleExceptionMiddleWare :
 
-A standard middleware for .Net web API intercepting unhandled exceptions raised during requests.
+A standard middleware for .Net web API intercepting unhandled exceptions raised during requests and generate responses.
 
 
 For using it, modifications must be done in startup.cs:
@@ -25,7 +25,7 @@ If developer exception page is not used, add at service configure method before 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       
       // If an exception response builder method defined bind it:
-      GlobalExceptionMiddleWare.exceptionResponseBuilder = aStaticMethodToBuildExceptionResponse;
+      GlobalExceptionMiddleWare.exceptionResponseBuilder = SomeClass.aStaticMethodToBuildExceptionResponse;
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
       
@@ -51,7 +51,7 @@ If developer exception page is needed during development :
       } else {                        // We add the else block... 
           // Non development only...
           // If an exception response builder method defined, bind it :
-          GlobalExceptionMiddleWare.exceptionResponseBuilder = aStaticMethodToBuildExceptionResponse;
+          GlobalExceptionMiddleWare.exceptionResponseBuilder = SomeClass.aStaticMethodToBuildExceptionResponse;
           // Bind global exception middleware.  
           app.UseMiddleware<GlobalExceptionMiddleware>();
       }
