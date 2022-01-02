@@ -34,11 +34,11 @@ namespace Tore.Service {
           TYPE:  ExceptionResponseBuilder.                                  <summary>
           TASK:  Method delegate type for exception response builder.       <br/>
           ARGS:                                                             <br/>
-                 response: HttpResponse : Response to write into.           <br/>
+                 context: HttpContext: Current request http context.        <br/>
                  exception: Exception: Exception to respond.                </summary>
         ————————————————————————————————————————————————————————————————————————————*/
         public delegate void ExceptionResponseBuilder(
-            HttpResponse response, 
+            HttpContext response, 
             Exception exception
         );
 
@@ -81,7 +81,7 @@ namespace Tore.Service {
 
             res.StatusCode = (int)HttpStatusCode.BadRequest; // Default
             try { 
-                exceptionResponseBuilder?.Invoke(res, exc);
+                exceptionResponseBuilder?.Invoke(ctx, exc);
             } catch (Exception e) {
                 badCode("exceptionResponseBuilder caused exception.", e);
                 return;
