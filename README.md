@@ -15,8 +15,45 @@ A standard middleware for .Net web API intercepting unhandled exceptions raised 
 
 using Tore.Service;
 ...
-// Add at service configure method before any other app.Use... commands :      
-  
-  app.UseMiddleware<GlobalExceptionMiddleware>()                                       
+// Add at service configure method before any other app.Use... commands :
+
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+      
+      // If an exception response builder method defined :
+      GlobalExceptionMiddleWare.exceptionResponseBuilder = aStaticMethodToBuildExceptionResponse;
+      // Bind global exception middleware.
+      app.UseMiddleware<GlobalExceptionMiddleware>();
+      
+      app.UseRouting();
+ 
+      app.UseAuthorization();
+
+      app.UseEndpoints(endpoints => {endpoints.MapControllers();});
+  }
+
+// If developer exception page is needed during development : 
+
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+      if(env.IsDevelopment()) {
+          app.UseDeveloperExceptionPage();
+          // Maybe there is swagger too.
+          app.UseSwagger();
+          app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test v1"));
+      
+      } else {
+          // Non development only...
+          // If an exception response builder method defined :
+          GlobalExceptionMiddleWare.exceptionResponseBuilder = aStaticMethodToBuildExceptionResponse;
+          // Bind global exception middleware.  
+          app.UseMiddleware<GlobalExceptionMiddleware>();
+      }
+      
+      app.UseRouting();
+
+      app.UseAuthorization();
+
+      app.UseEndpoints(endpoints => { endpoints.MapControllers();});
+}
+                                        
 
 ```  
