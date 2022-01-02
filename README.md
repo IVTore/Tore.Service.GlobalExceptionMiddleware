@@ -6,7 +6,7 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependancies: None.
 
-## GlobaleExceptionMiddleware :
+## GlobalExceptionMiddleware :
 
 A standard middleware for .Net web API intercepting unhandled exceptions raised during requests and generate responses accordingly.
 
@@ -53,6 +53,7 @@ context.response.CompleteAsync()
 flushing the response.
 
 
-Note that this setup does not handle invalid routes. <br/>
+
+<i>Note that this setup does not handle invalid routes. <br/>
 For that, invalid routes must be re-routed to a controller endpoint, <br/>
-If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
+If that endpoint raises exception, then GlobalExceptionMiddleware is activated.</i>
