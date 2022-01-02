@@ -79,5 +79,5 @@ Whether the method writes the response or not, the middleware issues a CompleteA
 
 
 Note that this setup does not handle invalid routes. <br/>
-For that, invalid routes must be re-routed to an endpoint, <br/>
+For that, invalid routes must be re-routed to a controller endpoint, <br/>
 If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
