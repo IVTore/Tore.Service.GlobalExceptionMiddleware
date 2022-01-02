@@ -4,7 +4,25 @@
         <name>GlobalExceptionMiddleware</name>
     </assembly>
     <members>
-        <!-- Badly formed XML comment ignored for member "T:Tore.Service.GlobalExceptionMiddleware" -->
+        <member name="T:Tore.Service.GlobalExceptionMiddleware">
+            ———————————————————————————————————————————————————————————————————————————
+                    CLASS:  GlobalExceptionMiddleware.                              <summary>
+                    USAGE:                                                          <br/>
+                            Add at service configure method:                        <br/>
+                            app.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()    <br/>
+                            Before any other app.Use... commands.                   <br/>
+                            Don't forget to assign exceptionResponseBuilder.        </summary>
+                ————————————————————————————————————————————————————————————————————————————
+        </member>
+        <member name="T:Tore.Service.GlobalExceptionMiddleware.ExceptionResponseBuilder">
+            ———————————————————————————————————————————————————————————————————————————
+                      TYPE:  ExceptionResponseBuilder.                                  <summary>
+                      TASK:  Method delegate type for exception response builder.       <br/>
+                      ARGS:                                                             <br/>
+                             context: HttpContext: Current request http context.        <br/>
+                             exception: Exception: Exception to respond.                </summary>
+                    ————————————————————————————————————————————————————————————————————————————
+        </member>
         <member name="F:Tore.Service.GlobalExceptionMiddleware.exceptionResponseBuilder">
             ———————————————————————————————————————————————————————————————————————————
                       VAR:  exceptionResponseBuilder.                               <summary>

@@ -46,7 +46,11 @@ public delegate void ExceptionResponseBuilder(HttpContext context, Exception exc
 
 The delegated method has full view of current request's http context and exception.<br/>
 The method can modify context.response object, and also optionally write the response and return. <br/>
-Whether the method writes the response or not, the middleware issues a CompleteAsync, flushing the response.
+Whether the method writes the response or not, the middleware issues a 
+```C#
+context.response.CompleteAsync()
+```
+flushing the response.
 
 
 Note that this setup does not handle invalid routes. <br/>
