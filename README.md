@@ -73,11 +73,11 @@ It must be a delegate of type:
 public delegate void ExceptionResponseBuilder(HttpContext context, Exception exception);
 ```
 
-The delegated method has full view of current request's http context and exception.
-The method can modify context.response object, and also optionally write the response and return.
+The delegated method has full view of current request's http context and exception.<br/>
+The method can modify context.response object, and also optionally write the response and return. <br/>
 Whether the method writes the response or not, the middleware issues a CompleteAsync, flushing the response.
 
 
-Note that this setup does not handle invalid routes. 
-For that, invalid routes must be re-routed to an endpoint,
+Note that this setup does not handle invalid routes. <br/>
+For that, invalid routes must be re-routed to an endpoint, <br/>
 If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
