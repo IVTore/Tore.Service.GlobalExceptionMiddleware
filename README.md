@@ -6,7 +6,7 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependancies: None.
 
-## GlobaleExceptionMiddleWare :
+## GlobaleExceptionMiddleware :
 
 A standard middleware for .Net web API intercepting unhandled exceptions raised during requests and generate responses accordingly.
 
