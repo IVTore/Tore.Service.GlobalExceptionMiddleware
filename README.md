@@ -24,7 +24,7 @@ Add at service configure method before any other app.Use... commands :
 ```C#
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       
-      // If an exception response builder method defined bind it:
+      // Bind the exception response builder method :
       GlobalExceptionMiddleWare.exceptionResponseBuilder = SomeClass.aStaticMethodToBuildExceptionResponse;
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
