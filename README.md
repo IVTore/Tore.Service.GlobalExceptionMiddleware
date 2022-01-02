@@ -11,7 +11,7 @@ Dependancies: None.
 A standard middleware for .Net web API intercepting unhandled exceptions raised during requests.
 
 ```C#
-// Add this to your program.cs usings.
+// Add this to your startup.cs usings.
 
 using Tore.Service;
 ...
@@ -19,7 +19,7 @@ using Tore.Service;
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       
-      // If an exception response builder method defined :
+      // If an exception response builder method defined bind it:
       GlobalExceptionMiddleWare.exceptionResponseBuilder = aStaticMethodToBuildExceptionResponse;
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
@@ -42,7 +42,7 @@ using Tore.Service;
       
       } else {
           // Non development only...
-          // If an exception response builder method defined :
+          // If an exception response builder method defined, bind it :
           GlobalExceptionMiddleWare.exceptionResponseBuilder = aStaticMethodToBuildExceptionResponse;
           // Bind global exception middleware.  
           app.UseMiddleware<GlobalExceptionMiddleware>();
@@ -57,3 +57,7 @@ using Tore.Service;
                                         
 
 ```  
+
+Note that this does not handle invalid routes. 
+For that invalid routes must be rerouted to an endpoint,
+If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
