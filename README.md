@@ -10,13 +10,18 @@ Dependancies: None.
 
 A standard middleware for .Net web API intercepting unhandled exceptions raised during requests.
 
+
+For using it, modifications must be done in startup.cs:
 ```C#
 // Add this to your startup.cs usings.
 
 using Tore.Service;
-...
-// Add at service configure method before any other app.Use... commands :
 
+```
+
+If DeveloperExceptionPage is not used add at service configure method before any other app.Use... commands :
+
+```C#
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       
       // If an exception response builder method defined bind it:
@@ -30,8 +35,11 @@ using Tore.Service;
 
       app.UseEndpoints(endpoints => {endpoints.MapControllers();});
   }
+```
 
-// If developer exception page is needed during development : 
+If developer exception page is needed during development : 
+
+```C#
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       if(env.IsDevelopment()) {
