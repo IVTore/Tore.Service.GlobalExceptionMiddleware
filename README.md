@@ -19,7 +19,7 @@ using Tore.Service;
 
 ```
 
-If DeveloperExceptionPage is not used add at service configure method before any other app.Use... commands :
+If developer exception page is not used add at service configure method before any other app.Use... commands :
 
 ```C#
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
