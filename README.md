@@ -8,7 +8,7 @@ Dependancies: None.
 
 ## GlobaleExceptionMiddleWare :
 
-A standard middleware for .Net web API intercepting unhandled exceptions raised during requests and generate responses.
+A standard middleware for .Net web API intercepting unhandled exceptions raised during requests and generate responses accordingly.
 
 
 For using it, modifications must be done in startup.cs:
@@ -66,6 +66,18 @@ If developer exception page is needed during development :
 
 ```  
 
-Note that this does not handle invalid routes. 
-For that invalid routes must be rerouted to an endpoint,
+An exception response builder method must be defined to generate the responses.
+It must be a delegate of type:
+
+```C#
+public delegate void ExceptionResponseBuilder(HttpContext context, Exception exception);
+```
+
+The delegated method has full view of current request's http context and exception.
+The method can modify context.response object, and also optionally write the response and return.
+Whether the method writes the response or not, the middleware issues a CompleteAsync, flushing the response.
+
+
+Note that this setup does not handle invalid routes. 
+For that, invalid routes must be re-routed to an endpoint,
 If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
