@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Tore.Service.GlobalExceptionMiddleware</PackageId>
+    <Authors>İhsan Volkan Töre</Authors>
+    <PackageProjectUrl>https://github.com/IVTore/Tore.Service.GlobalExceptionMiddleware</PackageProjectUrl>
+    <Description>A standard middleware for .Net 5 web API
+It intercepts unhandled exceptions raised during requests
+and calls a user defined method to generate responses accordingly.</Description>
+    <Copyright>2021 İhsan Volkan Töre</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Tore Service Global Exception Middleware .Net Web Api</PackageTags>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/IVTore/Tore.Service.GlobalExceptionMiddleware</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
