@@ -8,7 +8,9 @@ Dependancies: None.
 
 ## GlobalExceptionMiddleware :
 
-A standard middleware for .Net web API intercepting unhandled exceptions raised during requests and generate responses accordingly.
+A standard middleware for .Net 5 web API <br/>
+It intercepts unhandled exceptions raised during requests<br/>
+and calls a user defined method to generate responses accordingly.<br/>
 
 
 For using it, modifications must be done in startup.cs:
@@ -19,7 +21,7 @@ using Tore.Service;
 
 ```
 
-Add at service configure method before any other app.Use... commands :
+Add bindings at service configure method before any other app.Use... commands:
 
 ```C#
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
@@ -38,10 +40,14 @@ Add at service configure method before any other app.Use... commands :
 ```
 
 An exception responder method must be defined to generate the responses.
-It must be a delegate of type:
-
+It should be a delegate of type:
 ```C#
 public delegate void ExceptionResponderDelegate(HttpContext context, Exception exception);
+```
+
+The method should be bound as:
+```C#
+    GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
 ```
 
 The delegated method has full view of current request's http context and exception.<br/>
