@@ -23,14 +23,7 @@
                              exception: Exception: Exception to respond.                </summary>
                     ————————————————————————————————————————————————————————————————————————————
         </member>
-        <member name="F:Tore.Service.GlobalExceptionMiddleware.exceptionResponseBuilder">
-            ———————————————————————————————————————————————————————————————————————————
-                      VAR:  exceptionResponseBuilder.                               <summary>
-                      USE:  Method delegate for building an exception response.     <br/>
-                            Method delegate type must be ExceptionResponseBuilder.  <br/>
-                            Response must be written into response object passed.   </summary>
-                    ————————————————————————————————————————————————————————————————————————————
-        </member>
+        <!-- Badly formed XML comment ignored for member "F:Tore.Service.GlobalExceptionMiddleware.exceptionResponseBuilder" -->
         <member name="M:Tore.Service.GlobalExceptionMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
             ——————————————————————————————————————————————————————————————————————————
                       CTOR: GlobalExceptionMiddleware                               <summary>

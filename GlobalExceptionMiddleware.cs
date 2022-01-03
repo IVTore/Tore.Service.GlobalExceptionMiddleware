@@ -47,8 +47,13 @@ namespace Tore.Service {
         /**———————————————————————————————————————————————————————————————————————————
           VAR:  exceptionResponseBuilder.                               <summary>
           USE:  Method delegate for building an exception response.     <br/>
-                Method delegate type must be ExceptionResponseBuilder.  <br/>
-                Response must be written into response object passed.   </summary>
+                Method delegate type must be ExceptionResponseBuilder.  <para/>
+                The method can modify context.response object, and also <br/>
+                optionally write the response and return.               <br/>
+                Whether the method writes the response or not,          
+                the middleware issues a                                 <br/>
+                <c>context.response.CompleteAsync();</c>                <br/>
+                flushing the response.                                  </summary>
         ————————————————————————————————————————————————————————————————————————————*/
         public static ExceptionResponseBuilder exceptionResponseBuilder;
 
