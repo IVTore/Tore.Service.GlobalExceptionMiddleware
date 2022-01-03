@@ -52,21 +52,23 @@ context.response.CompleteAsync()
 ```
 flushing the response.
 
+---
 
-
-<i>Notes:<br/>
+*Notes:*<br/>
 <br/>
-1] If developer exception page is required during development: <br/>
+1. If developer exception page is required during development: <br/>
    Add <br/>
 ```C#
     app.UseMiddleware<GlobalExceptionMiddleware>();
 ```
    Before <br/>
+
 ```C#
-    app.UseDeveloperExceptionPage()<br/>
+    app.UseDeveloperExceptionPage();
 ```
-    That way developer exception page overrides the global exception middleware.<br/>
+
+That way developer exception page overrides the global exception middleware.<br/>
     <br/>
-2] This setup does not handle invalid routes. <br/>
+2. This setup does not handle invalid routes. <br/>
 For that, invalid routes must be re-routed to a controller endpoint, <br/>
-If that endpoint raises exception, then GlobalExceptionMiddleware is activated.</i>
+If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
