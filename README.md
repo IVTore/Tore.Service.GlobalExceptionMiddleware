@@ -54,21 +54,21 @@ flushing the response.
 
 ---
 
-*Notes:*<br/>
+**Notes:**<br/>
 <br/>
-1. If developer exception page is required during development: <br/>
-   Add <br/>
+1] If developer exception page is required during development: <br/>
+&emsp; Add <br/>
 ```C#
     app.UseMiddleware<GlobalExceptionMiddleware>();
 ```
-   Before <br/>
+&emsp; Before <br/>
 
 ```C#
     app.UseDeveloperExceptionPage();
 ```
 
-That way developer exception page overrides the global exception middleware.<br/>
+&emsp; That way developer exception page overrides the global exception middleware.<br/>
     <br/>
-2. This setup does not handle invalid routes. <br/>
-For that, invalid routes must be re-routed to a controller endpoint, <br/>
-If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
+2] This setup does not handle invalid routes. <br/>
+&emsp; For that, invalid routes must be re-routed to a controller endpoint, <br/>
+&emsp; If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
