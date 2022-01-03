@@ -26,13 +26,13 @@ namespace Tore.Service {
                 Add at service configure method:                        <br/>
                 app.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()    <br/>
                 Before any other app.Use... commands.                   <br/>
-                Don't forget to assign exceptionResponseBuilder.        </summary>
+                Don't forget to assign ExceptionResponder.              </summary>
     ————————————————————————————————————————————————————————————————————————————*/
     public class GlobalExceptionMiddleware {
 
         /**———————————————————————————————————————————————————————————————————————————
           TYPE:  ExceptionResponderDelegate                                 <summary>
-          TASK:  Method delegate type for exception response builder.       <br/>
+          TASK:  Method delegate type for exception responder.              <br/>
           ARGS:                                                             <br/>
                  context: HttpContext: Current request http context.        <br/>
                  exception: Exception: Exception to respond.                </summary>
@@ -46,8 +46,8 @@ namespace Tore.Service {
 
         /**———————————————————————————————————————————————————————————————————————————
           VAR:  ExceptionResponder.                                     <summary>
-          USE:  Method delegate for building an exception response.     <br/>
-                Method delegate type must be ExceptionResponseBuilder.  <para/>
+          USE:  Method delegate for responding an exception.            <br/>
+                Method delegate type must be ExceptionResponderDelegate.<para/>
                 The method can modify context.response object, and also <br/>
                 optionally write the response and return.               <para/>
                 Whether the method writes the response or not,          <br/>
