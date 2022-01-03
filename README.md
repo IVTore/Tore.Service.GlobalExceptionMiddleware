@@ -1,10 +1,13 @@
 # Tore.Service.GlobalExceptionMiddleware
 
-Language: C#. (.Net 5)
+Language: C#.
 
 Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/packages/Tore.Service.GlobalExceptionMiddleware/)
 
-Dependancies: None.
+Dependancies: 
+&emsp; net5.0
+&emsp; Microsoft.AspNetCore.Mvc.Core (>= 2.2.5)
+&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10)
 
 ## GlobalExceptionMiddleware :
 
