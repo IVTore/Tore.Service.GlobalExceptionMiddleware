@@ -38,7 +38,7 @@ namespace Tore.Service {
                  exception: Exception: Exception to respond.                </summary>
         ————————————————————————————————————————————————————————————————————————————*/
         public delegate void ExceptionResponderDelegate(
-            HttpContext response, 
+            HttpContext context, 
             Exception exception
         );
 
