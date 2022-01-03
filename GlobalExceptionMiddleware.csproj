@@ -13,8 +13,9 @@ and calls a user defined method to generate responses accordingly.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Tore Service Global Exception Middleware .Net Web Api</PackageTags>
-    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <PackageReleaseNotes>Wrong parameter name...Corrected.</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/IVTore/Tore.Service.GlobalExceptionMiddleware</RepositoryUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
