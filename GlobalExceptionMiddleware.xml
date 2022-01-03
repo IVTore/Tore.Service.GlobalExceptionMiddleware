@@ -14,16 +14,28 @@
                             Don't forget to assign exceptionResponseBuilder.        </summary>
                 ————————————————————————————————————————————————————————————————————————————
         </member>
-        <member name="T:Tore.Service.GlobalExceptionMiddleware.ExceptionResponseBuilder">
+        <member name="T:Tore.Service.GlobalExceptionMiddleware.ExceptionResponderDelegate">
             ———————————————————————————————————————————————————————————————————————————
-                      TYPE:  ExceptionResponseBuilder.                                  <summary>
+                      TYPE:  ExceptionResponderDelegate                                 <summary>
                       TASK:  Method delegate type for exception response builder.       <br/>
                       ARGS:                                                             <br/>
                              context: HttpContext: Current request http context.        <br/>
                              exception: Exception: Exception to respond.                </summary>
                     ————————————————————————————————————————————————————————————————————————————
         </member>
-        <!-- Badly formed XML comment ignored for member "F:Tore.Service.GlobalExceptionMiddleware.exceptionResponseBuilder" -->
+        <member name="F:Tore.Service.GlobalExceptionMiddleware.ExceptionResponder">
+            ———————————————————————————————————————————————————————————————————————————
+                      VAR:  ExceptionResponder.                                     <summary>
+                      USE:  Method delegate for building an exception response.     <br/>
+                            Method delegate type must be ExceptionResponseBuilder.  <para/>
+                            The method can modify context.response object, and also <br/>
+                            optionally write the response and return.               <para/>
+                            Whether the method writes the response or not,          <br/>
+                            the middleware issues a                                 <br/>
+                            <c>context.response.CompleteAsync();</c>                <br/>
+                            flushing the response.                                  </summary>
+                    ————————————————————————————————————————————————————————————————————————————
+        </member>
         <member name="M:Tore.Service.GlobalExceptionMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
             ——————————————————————————————————————————————————————————————————————————
                       CTOR: GlobalExceptionMiddleware                               <summary>

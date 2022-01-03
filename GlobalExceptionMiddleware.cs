@@ -31,13 +31,13 @@ namespace Tore.Service {
     public class GlobalExceptionMiddleware {
 
         /**———————————————————————————————————————————————————————————————————————————
-          TYPE:  ExceptionResponseBuilder.                                  <summary>
+          TYPE:  ExceptionResponderDelegate                                 <summary>
           TASK:  Method delegate type for exception response builder.       <br/>
           ARGS:                                                             <br/>
                  context: HttpContext: Current request http context.        <br/>
                  exception: Exception: Exception to respond.                </summary>
         ————————————————————————————————————————————————————————————————————————————*/
-        public delegate void ExceptionResponseBuilder(
+        public delegate void ExceptionResponderDelegate(
             HttpContext response, 
             Exception exception
         );
@@ -45,17 +45,17 @@ namespace Tore.Service {
         private readonly RequestDelegate next;
 
         /**———————————————————————————————————————————————————————————————————————————
-          VAR:  exceptionResponseBuilder.                               <summary>
+          VAR:  ExceptionResponder.                                     <summary>
           USE:  Method delegate for building an exception response.     <br/>
                 Method delegate type must be ExceptionResponseBuilder.  <para/>
                 The method can modify context.response object, and also <br/>
-                optionally write the response and return.               <br/>
-                Whether the method writes the response or not,          
+                optionally write the response and return.               <para/>
+                Whether the method writes the response or not,          <br/>
                 the middleware issues a                                 <br/>
                 <c>context.response.CompleteAsync();</c>                <br/>
                 flushing the response.                                  </summary>
         ————————————————————————————————————————————————————————————————————————————*/
-        public static ExceptionResponseBuilder exceptionResponseBuilder;
+        public static ExceptionResponderDelegate ExceptionResponder;
 
         /**——————————————————————————————————————————————————————————————————————————
           CTOR: GlobalExceptionMiddleware                               <summary>
@@ -86,9 +86,9 @@ namespace Tore.Service {
 
             res.StatusCode = (int)HttpStatusCode.BadRequest; // Default
             try { 
-                exceptionResponseBuilder?.Invoke(ctx, exc);
+                ExceptionResponder?.Invoke(ctx, exc);
             } catch (Exception e) {
-                badCode("exceptionResponseBuilder caused exception.", e);
+                badCode("ExceptionResponder caused exception.", e);
                 return;
             }
             try {

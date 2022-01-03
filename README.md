@@ -25,7 +25,7 @@ Add at service configure method before any other app.Use... commands :
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       
       // Bind the exception response builder method :
-      GlobalExceptionMiddleWare.exceptionResponseBuilder = SomeClass.aStaticMethodToBuildExceptionResponse;
+      GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
       
@@ -37,11 +37,11 @@ Add at service configure method before any other app.Use... commands :
   }
 ```
 
-An exception response builder method must be defined to generate the responses.
+An exception responder method must be defined to generate the responses.
 It must be a delegate of type:
 
 ```C#
-public delegate void ExceptionResponseBuilder(HttpContext context, Exception exception);
+public delegate void ExceptionResponderDelegate(HttpContext context, Exception exception);
 ```
 
 The delegated method has full view of current request's http context and exception.<br/>
@@ -59,6 +59,7 @@ flushing the response.
 1] If developer exception page is required during development: <br/>
 &emsp; Add <br/>
 ```C#
+    GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
     app.UseMiddleware<GlobalExceptionMiddleware>();
 ```
 &emsp; Before <br/>
