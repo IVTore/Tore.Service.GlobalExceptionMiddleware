@@ -7,11 +7,13 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 Dependancies: <br/>
 &emsp; net5.0 <br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10)<br/>
+
 ---
 <br/>
 &emsp; Why NewtonsoftJson? <br/>
 &emsp; Because it saves me from a lot of class chasings and abstractions.<br/>
 &emsp; And I use it in my controller communications anyway.<br/>
+
 ---
 <br/>
 
