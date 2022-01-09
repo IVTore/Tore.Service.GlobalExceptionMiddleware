@@ -6,14 +6,7 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependancies: <br/>
 &emsp; net5.0 <br/>
-&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10)<br/>
-
----
-&emsp; Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
-&emsp; Because it saves me from a lot of class chasings and abstractions.<br/>
-&emsp; And I use it in my controller communications anyway.
-
----
+&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10) [Please refer to note 4 below]<br/>
 
 ## GlobalExceptionMiddleware :
 
@@ -90,4 +83,8 @@ flushing the response.
     <br/>
 3] This setup does not handle invalid routes. <br/>
 &emsp; For that, invalid routes must be re-routed to a controller endpoint, <br/>
-&emsp; If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
+&emsp; If that endpoint raises exception, then GlobalExceptionMiddleware is activated.<br/>
+<br/>
+4] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
+&emsp; Weirdly enough default http abstractions miss some methods like HttpResponse.CloseAsync().<br/>
+&emsp; So it saves me from a lot of class chasings and abstractions and I use it in my API's anyway.
