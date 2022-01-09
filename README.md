@@ -6,8 +6,14 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependancies: <br/>
 &emsp; net5.0 <br/>
-&emsp; Microsoft.AspNetCore.Mvc.Core (>= 2.2.5) <br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10)<br/>
+---
+<br/>
+&emsp; Why NewtonsoftJson? <br/>
+&emsp; Because it saves me from a lot of class chasings and abstractions.<br/>
+&emsp; And I use it in my controller communications anyway.<br/>
+---
+<br/>
 
 ## GlobalExceptionMiddleware :
 
@@ -65,7 +71,10 @@ flushing the response.
 
 **Notes:**<br/>
 <br/>
-1] If developer exception page is required during development: <br/>
+1] ExceptionResponder should not raise an exception under any conditions.<br/>
+&emsp; It would be like a fire extinguisher catching fire.<br/>
+
+2] If developer exception page is required during development: <br/>
 &emsp; Add <br/>
 ```C#
     GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
@@ -79,6 +88,6 @@ flushing the response.
 
 &emsp; That way developer exception page overrides the global exception middleware.<br/>
     <br/>
-2] This setup does not handle invalid routes. <br/>
+3] This setup does not handle invalid routes. <br/>
 &emsp; For that, invalid routes must be re-routed to a controller endpoint, <br/>
 &emsp; If that endpoint raises exception, then GlobalExceptionMiddleware is activated.
