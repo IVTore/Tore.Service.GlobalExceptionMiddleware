@@ -9,10 +9,11 @@ Dependancies: <br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10)<br/>
 
 ---
-&emsp; Why NewtonsoftJson? <br/>
+&emsp; Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
 &emsp; Because it saves me from a lot of class chasings and abstractions.<br/>
 &emsp; And I use it in my controller communications anyway.
--------------------
+
+---
 
 ## GlobalExceptionMiddleware :
 
