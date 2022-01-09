@@ -12,9 +12,7 @@ Dependancies: <br/>
 &emsp; Why NewtonsoftJson? <br/>
 &emsp; Because it saves me from a lot of class chasings and abstractions.<br/>
 &emsp; And I use it in my controller communications anyway.
-
----
-<br/>
+-------------------
 
 ## GlobalExceptionMiddleware :
 
