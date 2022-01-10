@@ -4,7 +4,7 @@ Language: C#.
 
 Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/packages/Tore.Service.GlobalExceptionMiddleware/)
 
-Dependancies: <br/>
+Dependencies: <br/>
 &emsp; net5.0 <br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10) [Please refer to note 4 below]<br/>
 
@@ -91,5 +91,5 @@ flushing the response.
 <br/>
 5] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
 &emsp; After service starts, since system goes multithreading, do not change assignments.<br/>
-&emsp; Turkish proverb :While crossing the river, one does not switch horses...<br/>
+&emsp; Turkish proverb: While crossing the river, one does not switch horses...<br/>
 <br/>
