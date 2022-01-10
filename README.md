@@ -87,4 +87,9 @@ flushing the response.
 <br/>
 4] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
 &emsp; Weirdly enough default http abstractions miss some methods like HttpResponse.CloseAsync().<br/>
-&emsp; So it saves me from a lot of class chasings and abstractions and I use it in my API's anyway.
+&emsp; So it saves me from a lot of class chasings and abstractions and I use it in my API's anyway.<br/>
+<br/>
+5] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
+&emsp; After service starts, since system goes multithreading, do not change assignments.<br/>
+&emsp; Turkish proverb :While crossing the river, one does not switch horses...<br/>
+<br/>
