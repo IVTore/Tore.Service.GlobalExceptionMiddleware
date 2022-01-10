@@ -12,7 +12,7 @@ Dependancies: <br/>
 
 A standard middleware for .Net 5 web API <br/>
 It intercepts unhandled exceptions raised during requests<br/>
-and calls a user defined method to generate responses accordingly.<br/>
+and calls a developer defined method to generate responses accordingly.<br/>
 
 
 For using it, modifications must be done in startup.cs:
