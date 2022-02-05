@@ -23,9 +23,14 @@ namespace Tore.Service {
     /**———————————————————————————————————————————————————————————————————————————
         CLASS:  GlobalExceptionMiddleware.                              <summary>
         USAGE:                                                          <br/>
+                net 5.0:                                                <br/>
                 Add at service configure method:                        <br/>
                 app.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()    <br/>
-                Before any other app.Use... commands.                   <br/>
+                                                                        <br/>
+                net 6.0:                                                <br/>
+                builder.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()<br/>
+                                                                        <br/>
+                Before any other Use... commands.                       <br/>
                 Don't forget to assign ExceptionResponder.              </summary>
     ————————————————————————————————————————————————————————————————————————————*/
     public class GlobalExceptionMiddleware {

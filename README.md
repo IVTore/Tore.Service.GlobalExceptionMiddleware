@@ -5,19 +5,24 @@ Language: C#.
 Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/packages/Tore.Service.GlobalExceptionMiddleware/)
 
 Dependencies: <br/>
-&emsp; net5.0 <br/>
-&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 5.0.10) [Please refer to note 4 below]<br/>
+
+GlobalExceptionMiddleware v5.0.0 for net 5.0 .<br/>
+&emsp; net 5.0<br/>
+&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (5.0.10) [Please refer to note 2 below]<br/>
+<br/>
+GlobalExceptionMiddleware v6.0.0+ for net 6.0 .<br/>
+&emsp; net 6.0<br/>
+&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 2 below]<br/>
 
 ## GlobalExceptionMiddleware :
 
-A standard middleware for .Net 5 web API <br/>
+A standard middleware for net web API <br/>
 It intercepts unhandled exceptions raised during requests<br/>
 and calls a developer defined method to generate responses accordingly.<br/>
 
-
-For using it, modifications must be done in startup.cs:
+For using it in net 5.0 modify startup.cs:<br/>
 ```C#
-// Add this to your startup.cs usings.
+// Add this to your usings.
 
 using Tore.Service;
 
@@ -33,11 +38,29 @@ Add bindings at service configure method before any other app.Use... commands:
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
       
-      app.UseRouting();
- 
-      app.UseAuthorization();
+      // Then use others ...
+  }
+```
 
-      app.UseEndpoints(endpoints => {endpoints.MapControllers();});
+For using it in net 6.0 modify program.cs:<br/>
+```C#
+// Add this to your usings.
+
+using Tore.Service;
+
+```
+
+Add bindings before any use... commands:
+
+```C#
+      var builder = WebApplication.CreateBuilder(args);
+      var app = builder.Build();
+      // Bind the exception responder method :
+      GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
+      // Bind global exception middleware.
+      app.UseMiddleware<GlobalExceptionMiddleware>();
+
+      // Then write other uses and mappings ...
   }
 ```
 
