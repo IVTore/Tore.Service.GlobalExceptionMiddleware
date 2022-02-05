@@ -61,7 +61,7 @@ Add bindings before any use... commands:
       app.UseMiddleware<GlobalExceptionMiddleware>();
 
       // Then write other uses and mappings ...
-  }
+  
 ```
 
 An exception responder method must be defined to generate the responses.
