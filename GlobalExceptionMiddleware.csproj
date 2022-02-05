@@ -9,13 +9,13 @@
     <Description>A standard middleware for .Net 5 web API
 It intercepts unhandled exceptions raised during requests
 and calls a user defined method to generate responses accordingly.</Description>
-    <Copyright>2021 İhsan Volkan Töre</Copyright>
+    <Copyright>2022 İhsan Volkan Töre</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Tore Service Global Exception Middleware .Net Web Api</PackageTags>
     <PackageReleaseNotes>Dependancy simplified.</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/IVTore/Tore.Service.GlobalExceptionMiddleware</RepositoryUrl>
-    <Version>5.0.0</Version>
+    <Version>6.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
