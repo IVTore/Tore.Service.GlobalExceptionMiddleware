@@ -24,13 +24,13 @@ WARNING: Exception Responder Delegate Type has changed:
 ```C#
 // For versions 5.0.0 and 6.0.0.
 
-    public static void MyExceptionResponder(HttpContext context, Exception exception) {
+    public static void MyStaticExceptionResponder(HttpContext context, Exception exception) {
         // do it.
     }
 
 // For versions 5.0.1 and 6.0.1.
     
-    public static async Task MyExceptionResponder(HttpContext context, Exception exception) {
+    public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
         // do it.
     }
 
@@ -50,7 +50,7 @@ Add bindings at service configure method before any other app.Use... commands:
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       
       // Bind the exception responder method :
-      GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
+      GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
       
@@ -72,7 +72,7 @@ Add bindings before any use... commands:
       var builder = WebApplication.CreateBuilder(args);
       var app = builder.Build();
       // Bind the exception responder method :
-      GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
+      GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
       // Bind global exception middleware.
       app.UseMiddleware<GlobalExceptionMiddleware>();
 
@@ -88,7 +88,7 @@ public delegate Task ExceptionResponderDelegate(HttpContext context, Exception e
 
 The method should be bound as:
 ```C#
-    GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
+    GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
 ```
 
 The delegated method has full view of current request's http context and exception.<br/>
@@ -106,7 +106,7 @@ flushing the response.
 1] If developer exception page is required during development: <br/>
 &emsp; Add <br/>
 ```C#
-    GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
+    GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
     app.UseMiddleware<GlobalExceptionMiddleware>();
 ```
 &emsp; Before <br/>
