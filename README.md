@@ -44,15 +44,10 @@ public delegate Task ExceptionResponderDelegate(HttpContext context, Exception e
 
 // Which is a method like:
 
-    public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
-        // do it.
-    }
+public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
+    // do it.
+}
 
-```
-
-The method should be bound as:
-```C#
-    GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
 ```
 
 The delegated method has full view of current request's http context and exception.<br/>

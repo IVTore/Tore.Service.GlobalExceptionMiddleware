@@ -23,7 +23,6 @@ namespace Tore.Service {
     /**———————————————————————————————————————————————————————————————————————————
         CLASS:  GlobalExceptionMiddleware.                              <summary>
         USAGE:                                                          <br/>
-                                                                        <br/>
                 net 6.0:                                                <br/>
                 builder.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()<br/>
                                                                         <br/>
@@ -33,11 +32,12 @@ namespace Tore.Service {
     public class GlobalExceptionMiddleware {
 
         /**———————————————————————————————————————————————————————————————————————————
-          TYPE:  ExceptionResponderDelegate                                 <summary>
-          TASK:  Method delegate type for exception responder.              <br/>
+          TYPE: ExceptionResponderDelegate                                  <summary>
+          TASK:                                                             <br/>
+                Method delegate type for exception responder.               <para/>
           ARGS:                                                             <br/>
-                 context: HttpContext: Current request http context.        <br/>
-                 exception: Exception: Exception to respond.                </summary>
+                context: HttpContext: Current request http context.         <br/>
+                exception: Exception: Exception to respond.                 </summary>
         ————————————————————————————————————————————————————————————————————————————*/
         public delegate Task ExceptionResponderDelegate(
             HttpContext context, 
@@ -48,7 +48,8 @@ namespace Tore.Service {
 
         /**———————————————————————————————————————————————————————————————————————————
           VAR:  ExceptionResponder.                                     <summary>
-          USE:  Method delegate for responding an exception.            <br/>
+          USE:                                                          <br/>
+                Method delegate for responding an exception.            <br/>
                 Method delegate type must be ExceptionResponderDelegate.<para/>
                 The method can modify context.response object, and also <br/>
                 optionally write the response and return.               <para/>
@@ -60,20 +61,24 @@ namespace Tore.Service {
         public static ExceptionResponderDelegate ExceptionResponder;
 
         /**——————————————————————————————————————————————————————————————————————————
-          CTOR: GlobalExceptionMiddleware                               <summary>
-          TASK: Constructs a GlobalExceptionMiddleware object.          <br/>
-                This is called per request by the .Net Web API.         <br/>
-          ARGS: nextMiddleWare : RequestDelegate :
-                Next middleware delegate to invoke.                     </summary>
+          CTOR: GlobalExceptionMiddleware                                   <summary>
+          TASK:                                                             <br/>
+                Constructs a GlobalExceptionMiddleware object.              <br/>
+                This is called per request by the .Net Web API.             <para/>
+          ARGS:                                                             <br/>
+                nextMiddleWare: RequestDelegate:
+                Next middleware delegate to invoke.                         </summary>
         ————————————————————————————————————————————————————————————————————————————*/
         public GlobalExceptionMiddleware(RequestDelegate nextMiddleWare) {
             next = nextMiddleWare;
         }
- 
+
         /**——————————————————————————————————————————————————————————————————————————
           FUNC: InvokeAsync                                                 <summary>
-          TASK: Middleware chain call, do not use, .NET Web API calls this. <br/>
-          ARGS: context : HttpContext: Current http context.                </summary>
+          TASK:                                                             <br/>
+                Middleware chain call, do not use, .NET Web API calls this. <para/>
+          ARGS:                                                             <br/>
+                context : HttpContext: Current http context.                </summary>
         ————————————————————————————————————————————————————————————————————————————*/
         public async Task InvokeAsync(HttpContext context) {
             try {
