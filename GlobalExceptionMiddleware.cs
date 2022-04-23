@@ -42,7 +42,7 @@ namespace Tore.Service {
                  context: HttpContext: Current request http context.        <br/>
                  exception: Exception: Exception to respond.                </summary>
         ————————————————————————————————————————————————————————————————————————————*/
-        public delegate void ExceptionResponderDelegate(
+        public delegate Task ExceptionResponderDelegate(
             HttpContext context, 
             Exception exception
         );
@@ -91,7 +91,7 @@ namespace Tore.Service {
 
             res.StatusCode = (int)HttpStatusCode.BadRequest; // Default
             try { 
-                ExceptionResponder?.Invoke(ctx, exc);
+                await ExceptionResponder?.Invoke(ctx, exc);
             } catch (Exception e) {
                 badCode("ExceptionResponder caused exception.", e);
                 return;

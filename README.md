@@ -6,11 +6,11 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependencies: <br/>
 
-GlobalExceptionMiddleware v5.0.0 for net 5.0 .<br/>
+GlobalExceptionMiddleware v5.0.1 for net 5.0 .<br/>
 &emsp; net 5.0<br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (5.0.10) [Please refer to note 4 below]<br/>
 <br/>
-GlobalExceptionMiddleware v6.0.0+ for net 6.0 .<br/>
+GlobalExceptionMiddleware v6.0.1 for net 6.0 .<br/>
 &emsp; net 6.0<br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 4 below]<br/>
 
@@ -19,6 +19,22 @@ GlobalExceptionMiddleware v6.0.0+ for net 6.0 .<br/>
 A standard middleware for net web API <br/>
 It intercepts unhandled exceptions raised during requests<br/>
 and calls a developer defined method to generate responses accordingly.<br/>
+
+WARNING: Exception Responder Delegate Type has changed:
+```C#
+// For versions 5.0.0 and 6.0.0.
+
+    public static void MyExceptionResponder(HttpContext context, Exception exception) {
+        // do it.
+    }
+
+// For versions 5.0.1 and 6.0.1.
+    
+    public static async Task MyExceptionResponder(HttpContext context, Exception exception) {
+        // do it.
+    }
+
+```
 
 For using it in net 5.0 modify startup.cs:<br/>
 ```C#
@@ -67,7 +83,7 @@ Add bindings before any use... commands:
 An exception responder method must be defined to generate the responses.
 It should be a delegate of type:
 ```C#
-public delegate void ExceptionResponderDelegate(HttpContext context, Exception exception);
+public delegate Task ExceptionResponderDelegate(HttpContext context, Exception exception);
 ```
 
 The method should be bound as:
@@ -87,10 +103,7 @@ flushing the response.
 
 **Notes:**<br/>
 <br/>
-1] ExceptionResponder should not raise an exception under any conditions.<br/>
-&emsp; It would be like a fire extinguisher catching fire.<br/>
-
-2] If developer exception page is required during development: <br/>
+1] If developer exception page is required during development: <br/>
 &emsp; Add <br/>
 ```C#
     GlobalExceptionMiddleWare.ExceptionResponder = SomeClass.AStaticMethodToRespondException;
@@ -104,15 +117,15 @@ flushing the response.
 
 &emsp; That way developer exception page overrides the global exception middleware.<br/>
     <br/>
-3] This setup does not handle invalid routes. <br/>
+2] This setup does not handle invalid routes. <br/>
 &emsp; For that, invalid routes must be re-routed to a controller endpoint, <br/>
 &emsp; If that endpoint raises exception, then GlobalExceptionMiddleware is activated.<br/>
 <br/>
-4] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
+3] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
 &emsp; Weirdly enough default http abstractions miss some methods like HttpResponse.CloseAsync().<br/>
 &emsp; So it saves me from a lot of class chasings and abstractions and I use it in my API's anyway.<br/>
 <br/>
-5] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
+4] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
 &emsp; After service starts, since system goes multithreading, do not change assignments.<br/>
 &emsp; Turkish proverb: While crossing the river, one does not switch horses...<br/>
 <br/>
