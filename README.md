@@ -5,8 +5,6 @@ Language: C#.
 Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/packages/Tore.Service.GlobalExceptionMiddleware/)
 
 Dependencies: <br/>
-
-GlobalExceptionMiddleware v6.0.1 for net 6.0 .<br/>
 &emsp; net 6.0<br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 4 below]<br/>
 
@@ -17,16 +15,10 @@ It intercepts unhandled exceptions raised during requests<br/>
 and calls a developer defined method to generate responses accordingly.<br/>
 
 <b>WARNING</b>: <br/>
-1] net 5.0 support terminated.<br/>
-2] Exception Responder Type has changed into:<br/>
+1] net 5.0 is no more supported.<br/>
+2] Exception Responder Type has changed. See below.<br/>
 
-```C#
-    public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
-        // do it.
-    }
-```
-
-For using it in net 6.0 modify program.cs:<br/>
+For using it, modify program.cs:<br/>
 ```C#
 using Tore.Service;     // Add this to your usings.
 
@@ -46,8 +38,16 @@ app.UseMiddleware<GlobalExceptionMiddleware>();
 
 An exception responder method must be defined to generate the responses.
 It should be a delegate of type:
+
 ```C#
 public delegate Task ExceptionResponderDelegate(HttpContext context, Exception exception);
+
+// Which is a method like:
+
+    public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
+        // do it.
+    }
+
 ```
 
 The method should be bound as:
