@@ -6,7 +6,7 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependencies: <br/>
 &emsp; net 6.0<br/>
-&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 4 below]<br/>
+&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 3 below]<br/>
 
 ## GlobalExceptionMiddleware :
 
@@ -76,15 +76,11 @@ flushing the response.
 
 &emsp; That way developer exception page overrides the global exception middleware.<br/>
     <br/>
-2] This setup does not handle invalid routes. <br/>
-&emsp; For that, invalid routes must be re-routed to a controller endpoint, <br/>
-&emsp; If that endpoint raises exception, then GlobalExceptionMiddleware is activated.<br/>
-<br/>
-3] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
+2] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
 &emsp; Weirdly enough default http abstractions miss some methods like HttpResponse.CloseAsync().<br/>
 &emsp; So it saves me from a lot of class chasings and abstractions and I use it in my API's anyway.<br/>
 <br/>
-4] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
+3] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
 &emsp; After service starts, since system goes multithreading, do not change assignments.<br/>
 &emsp; Turkish proverb: While crossing the river, one does not switch horses...<br/>
 <br/>
