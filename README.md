@@ -16,9 +16,9 @@ A standard middleware for net web API <br/>
 It intercepts unhandled exceptions raised during requests<br/>
 and calls a developer defined method to generate responses accordingly.<br/>
 
-WARNING: 
-1] net 5.0 support terminated.
-2] Exception Responder Delegate Type has changed into:
+<b>WARNING</b>: <br/>
+1] net 5.0 support terminated.<br/>
+2] Exception Responder Type has changed into:<br/>
 
 ```C#
     public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
@@ -32,18 +32,17 @@ For using it in net 6.0 modify program.cs:<br/>
 
 using Tore.Service;
 
+...
 
-    ...
-
-    var app = builder.Build();
+var app = builder.Build();
       
-    // Bind the exception responder method before any use... commands:
-    GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
+// Bind the exception responder method:
+GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
       
-    // Bind global exception middleware.
-    app.UseMiddleware<GlobalExceptionMiddleware>();
+// Bind global exception middleware.
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
-    ...
+...
   
 ```
 
