@@ -23,9 +23,6 @@ namespace Tore.Service {
     /**———————————————————————————————————————————————————————————————————————————
         CLASS:  GlobalExceptionMiddleware.                              <summary>
         USAGE:                                                          <br/>
-                net 5.0:                                                <br/>
-                Add at service configure method:                        <br/>
-                app.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()    <br/>
                                                                         <br/>
                 net 6.0:                                                <br/>
                 builder.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()<br/>
@@ -82,28 +79,28 @@ namespace Tore.Service {
             try {
                 await next(context);
             } catch (Exception e) {
-                await exceptionAsync(context, e);
+                await ExceptionAsync(context, e);
             }
         }
  
-        private async Task exceptionAsync(HttpContext ctx, Exception exc) {
+        private async Task ExceptionAsync(HttpContext ctx, Exception exc) {
             HttpResponse res = ctx.Response;
 
             res.StatusCode = (int)HttpStatusCode.BadRequest; // Default
             try { 
                 await ExceptionResponder?.Invoke(ctx, exc);
             } catch (Exception e) {
-                badCode("ExceptionResponder caused exception.", e);
+                BadCode("ExceptionResponder caused exception.", e);
                 return;
             }
             try {
                 await res.CompleteAsync();
             } catch (Exception e) {
-                badCode("Mulformed exception response.", e); 
+                BadCode("Mulformed exception response.", e); 
             }
         }
 
-        private void badCode(string s, Exception e){
+        private void BadCode(string s, Exception e){
             string src = "[Tore.Service.GlobalExceptionMiddleware] ";
             Console.WriteLine(src + "Dev. Exception:"); 
             Console.WriteLine(src + s);

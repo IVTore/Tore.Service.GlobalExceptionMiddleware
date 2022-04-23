@@ -6,10 +6,6 @@ Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/pa
 
 Dependencies: <br/>
 
-GlobalExceptionMiddleware v5.0.1 for net 5.0 .<br/>
-&emsp; net 5.0<br/>
-&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (5.0.10) [Please refer to note 4 below]<br/>
-<br/>
 GlobalExceptionMiddleware v6.0.1 for net 6.0 .<br/>
 &emsp; net 6.0<br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 4 below]<br/>
@@ -20,42 +16,14 @@ A standard middleware for net web API <br/>
 It intercepts unhandled exceptions raised during requests<br/>
 and calls a developer defined method to generate responses accordingly.<br/>
 
-WARNING: Exception Responder Delegate Type has changed:
+WARNING: 
+1] net 5.0 support terminated.
+2] Exception Responder Delegate Type has changed into:
+
 ```C#
-// For versions 5.0.0 and 6.0.0.
-
-    public static void MyStaticExceptionResponder(HttpContext context, Exception exception) {
-        // do it.
-    }
-
-// For versions 5.0.1 and 6.0.1.
-    
     public static async Task MyStaticExceptionResponder(HttpContext context, Exception exception) {
         // do it.
     }
-
-```
-
-For using it in net 5.0 modify startup.cs:<br/>
-```C#
-// Add this to your usings.
-
-using Tore.Service;
-
-```
-
-Add bindings at service configure method before any other app.Use... commands:
-
-```C#
-  public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-      
-      // Bind the exception responder method :
-      GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
-      // Bind global exception middleware.
-      app.UseMiddleware<GlobalExceptionMiddleware>();
-      
-      // Then use others ...
-  }
 ```
 
 For using it in net 6.0 modify program.cs:<br/>
@@ -64,19 +32,18 @@ For using it in net 6.0 modify program.cs:<br/>
 
 using Tore.Service;
 
-```
 
-Add bindings before any use... commands:
+    ...
 
-```C#
-      var builder = WebApplication.CreateBuilder(args);
-      var app = builder.Build();
-      // Bind the exception responder method :
-      GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
-      // Bind global exception middleware.
-      app.UseMiddleware<GlobalExceptionMiddleware>();
+    var app = builder.Build();
+      
+    // Bind the exception responder method before any use... commands:
+    GlobalExceptionMiddleWare.ExceptionResponder = MyClass.MyStaticExceptionResponder;
+      
+    // Bind global exception middleware.
+    app.UseMiddleware<GlobalExceptionMiddleware>();
 
-      // Then write other uses and mappings ...
+    ...
   
 ```
 
