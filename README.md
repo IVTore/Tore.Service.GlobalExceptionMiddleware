@@ -28,9 +28,7 @@ and calls a developer defined method to generate responses accordingly.<br/>
 
 For using it in net 6.0 modify program.cs:<br/>
 ```C#
-// Add this to your usings.
-
-using Tore.Service;
+using Tore.Service;     // Add this to your usings.
 
 ...
 
