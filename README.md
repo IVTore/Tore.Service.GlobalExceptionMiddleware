@@ -76,8 +76,8 @@ flushing the response.
 &emsp; That way developer exception page overrides the global exception middleware.<br/>
     <br/>
 2] Why Microsoft.AspNetCore.Mvc.NewtonsoftJson? <br/>
-&emsp; Weirdly enough default http abstractions miss some methods like HttpResponse.CloseAsync().<br/>
-&emsp; So it saves me from a lot of class chasings and abstractions and I use it in my API's anyway.<br/>
+&emsp; Weirdly enough default http abstractions miss some methods like HttpResponse.CompleteAsync().<br/>
+&emsp; So it saves me from a lot of package hunting and it is used in web API's anyway.<br/>
 <br/>
 3] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
 &emsp; After service starts, since system goes multithreading, do not change assignments.<br/>
