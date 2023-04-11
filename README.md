@@ -4,9 +4,11 @@ Language: C#.
 
 Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/packages/Tore.Service.GlobalExceptionMiddleware/)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Dependencies: <br/>
 &emsp; net 7.0<br/>
-&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 3 below]<br/>
+&emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (7.0.4+)<br/>
 
 ## GlobalExceptionMiddleware :
 
