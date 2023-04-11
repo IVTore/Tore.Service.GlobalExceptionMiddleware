@@ -18,15 +18,15 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Http;
 
+
 namespace Tore.Service {
 
     /**———————————————————————————————————————————————————————————————————————————
         CLASS:  GlobalExceptionMiddleware.                              <summary>
         USAGE:                                                          <br/>
-                net 6.0:                                                <br/>
                 builder.UseMiddleware&lt;GlobalExceptionMiddleware&gt;()<br/>
                                                                         <br/>
-                Before any other Use... commands.                       <br/>
+                Before any other builder.Use... commands.               <br/>
                 Don't forget to assign ExceptionResponder.              </summary>
     ————————————————————————————————————————————————————————————————————————————*/
     public class GlobalExceptionMiddleware {
@@ -58,7 +58,7 @@ namespace Tore.Service {
                 <c>context.response.CompleteAsync();</c>                <br/>
                 flushing the response.                                  </summary>
         ————————————————————————————————————————————————————————————————————————————*/
-        public static ExceptionResponderDelegate ExceptionResponder;
+        public static ExceptionResponderDelegate? ExceptionResponder;
 
         /**——————————————————————————————————————————————————————————————————————————
           CTOR: GlobalExceptionMiddleware                                   <summary>
@@ -93,7 +93,8 @@ namespace Tore.Service {
 
             res.StatusCode = (int)HttpStatusCode.BadRequest; // Default
             try { 
-                await ExceptionResponder?.Invoke(ctx, exc);
+                if (ExceptionResponder != null) 
+                    await ExceptionResponder.Invoke(ctx, exc);
             } catch (Exception e) {
                 BadCode("ExceptionResponder caused exception.", e);
                 return;

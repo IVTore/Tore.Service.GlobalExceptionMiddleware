@@ -5,18 +5,15 @@ Language: C#.
 Nuget package: [Tore.Service.GlobalExceptionMiddleware](https://www.nuget.org/packages/Tore.Service.GlobalExceptionMiddleware/)
 
 Dependencies: <br/>
-&emsp; net 6.0<br/>
+&emsp; net 7.0<br/>
 &emsp; Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.1) [Please refer to note 3 below]<br/>
 
 ## GlobalExceptionMiddleware :
 
-A standard middleware for net web API <br/>
+A standard global exception middleware for net web API <br/>
 It intercepts unhandled exceptions raised during requests<br/>
 and calls a developer defined method to generate responses accordingly.<br/>
 
-<b>WARNING</b>: <br/>
-1] net 5.0 is no more supported.<br/>
-2] Exception Responder Type has changed. See below.<br/>
 
 For using it, modify program.cs:<br/>
 ```C#
@@ -82,5 +79,4 @@ flushing the response.
 <br/>
 3] GlobalExceptionMiddleware assignments should be done at configuration.<br/>
 &emsp; After service starts, since system goes multithreading, do not change assignments.<br/>
-&emsp; Turkish proverb: While crossing the river, one does not switch horses...<br/>
 <br/>
